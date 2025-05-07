@@ -249,7 +249,7 @@ if ($message) {
     
         <div class="agree">
         <input type="checkbox" name="agree" id="agree" required>
-        <label for="agree"> I agree to the <a href="https://commercin.com/en/terms-of-use/">Terms</a> and <a href="https://commercin.com/en/privacy-policy-2/">Privacy Policy</a>.</label>
+        <label for="agree"> I agree to the <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</label>
     </div>
        
     <button type="submit" name="submit_signup">Create an account</button>
