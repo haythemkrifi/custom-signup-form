@@ -45,17 +45,25 @@ function handle_custom_signup_form() {
             return;
         }
 
-        $role = ($role_choice === 'buyer') ? 'customer' : 'seller';
-
+        // Create the user account
         $user_id = wp_create_user($email, $password, $email);
         if (is_wp_error($user_id)) {
             set_transient('signup_message', ['type' => 'error', 'text' => 'Failed to create user. Try again.'], 30);
             return;
         }
 
+        // Assign roles based on the user's choice
         $user = new WP_User($user_id);
-        $user->set_role($role);
+        if ($role_choice === 'buyer') {
+            $user->set_role('customer'); // Assign 'customer' role
+        } elseif ($role_choice === 'seller') {
+            $user->set_role('seller'); // Assign 'seller' role
+        } elseif ($role_choice === 'both') {
+            $user->set_role('seller'); // Set primary role as 'seller'
+            $user->add_role('customer'); // Add additional role as 'customer'
+        }
 
+        // Update user meta data
         update_user_meta($user_id, 'first_name', $first_name);
         update_user_meta($user_id, 'last_name', $last_name);
         update_user_meta($user_id, 'billing_phone', $phone);
@@ -67,8 +75,6 @@ function handle_custom_signup_form() {
         wp_set_auth_cookie($user_id, true);
         do_action('wp_login', $email, $user);
 
-        // Redirect to My Account page
-        wp_redirect('https://commercin.com/en/account/');
-        exit;
+        // Redirect code removed
     }
 }
