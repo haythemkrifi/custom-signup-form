@@ -75,6 +75,5 @@ function handle_custom_signup_form() {
         wp_set_auth_cookie($user_id, true);
         do_action('wp_login', $email, $user);
 
-        // Redirect code removed
     }
 }
