@@ -20,7 +20,7 @@ This plugin adds a beautiful, modern registration form like Alibaba's, allowing 
 - Country
 - Email & Password
 
-🎯 Features:
+ Features:
 - Easy shortcode integration: `[custom_signup_form]`
 - Dokan-compatible user role assignment (`customer` or `seller`)
 - Custom fields saved in user meta
